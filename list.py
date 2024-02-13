@@ -11,7 +11,7 @@ cursor.execute(check_table_sql)
 #if table exists, fetches it
 table_exists = cursor.fetchone()
 
-#if it doesnt exist, create the table in sqlite
+#if it doesnt exist, create the table in sql
 if not table_exists:
     create_table_sql = """
        CREATE TABLE tasks (
@@ -27,7 +27,6 @@ if not table_exists:
 
 conn.commit()
 
-conn.close()
 
 #function to add task
 def add_task(task_name, task_description, due_date):
@@ -62,7 +61,7 @@ def mark_task_as_complete(task_id):
     print("Task has been marked as completed.")
 
 def delete_task(task_id):
-    sql = "DELETE FROM tasks WHERE task_name = ?"
+    sql = "DELETE FROM tasks WHERE id = ?"
 
     cursor.execute(sql, (task_id,))
 
@@ -105,5 +104,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
+conn.close()

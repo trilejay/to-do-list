@@ -1,4 +1,5 @@
 import sqlite3
+
 conn = sqlite3.connect('todo.db')
 cursor = conn.cursor()
 
@@ -48,9 +49,10 @@ def view_tasks():
 
     #fetches the tasks from sql table and prints them ontopython.
     #rows = each individual tasks and  columns = attributes (id key, name, description, due date)
-    tasks =  cursor.fetchall()
+    tasks = cursor.fetchall()
     for task in tasks:
-        print(task)
+        print (task)
+    return tasks
 
 def mark_task_as_complete(task_id):
     sql = "UPDATE tasks SET completed = ? WHERE id = ?"
@@ -104,4 +106,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-conn.close()
+
